@@ -1,0 +1,38 @@
+{
+  "development": {
+    "username": "root",
+    "password": "root",
+    "database": "ESPECIALISTAS",
+    "host": "db",
+    "dialect": "mariadb",
+    "logging": false,
+    "migrationStorage": "json",
+    "migrationStoragePath": "config/sequelizeMeta.json",
+    "seederStorage": "json",
+    "seederStoragePath": "config/sequelizeData.json"
+  },
+  "test": {
+    "username": "root",
+    "password": null,
+    "database": "ESPECIALISTAS",
+    "dialect": "mariadb",
+    "logging": false,
+    "host": "127.0.0.1",
+    "migrationStorage": "json",
+    "migrationStoragePath": "config/sequelizeMeta.json",
+    "seederStorage": "json",
+    "seederStoragePath": "config/sequelizeData.json"
+  },
+  "production": {
+    "username": "root",
+    "password": null,
+    "database": "ESPECIALISTAS",
+    "host": "127.0.0.1",
+    "dialect": "mariadb",
+    "logging": false,
+    "migrationStorage": "json",
+    "migrationStoragePath": "config/sequelizeMeta.json",
+    "seederStorage": "json",
+    "seederStoragePath": "config/sequelizeData.json"
+  }
+}
