@@ -2,10 +2,12 @@
 // const Database = require('../config/database');
 
 // const { models: { Product } } = Database();
-//
+
+const Database  = require('../config/database.js');
+
 module.exports = {
-  getProducts() {
-    return 'batata-frita';
-    // return Product.findAll()
+  async getProducts() {
+    const conection = await Database();
+    return conection.query('SELECT nome from Especialista');
   }
 };
