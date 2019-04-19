@@ -3,13 +3,28 @@
 
 // const { models: { Product } } = Database();
 
+//ARTIGO, trabalho em even
+
+//TODO
+// Artigo -> titulo
+// CapLivro -> titulo
+// Doutorado -> titulo_tese
+// Especialista -> resumo, nome
+// Livro -> titulo
+// Mestrado ->  titulo_tese
+// PosDoutorado -> titulo_tese
+// Projeto -> titulo, descrição
+// TrabEvento -> titulo
+
+
+
 const Database  = require('../config/database.js');
 
 function createWhere(query){
   const vet = query.split(' ');
-  const maped = vet.map(nome => ` nome LIKE '%${nome}%' OR`).join(' ');
+  const maped = vet.map(nome => ` nome LIKE '%${nome}%' AND`).join(' ');
 
-  return `WHERE ${maped.substring(0,maped.length-2)};`
+  return `WHERE ${maped.substring(0,maped.length-3)};`
 }
 
 module.exports = {
