@@ -34,9 +34,8 @@
 //
 //   return database;
 // }
-const mariadb = require('mariadb');
 
-module.exports = async () => {
-  return await mariadb.createConnection({host: 'db', user: 'root', password: 'root', database: 'ESPECIALISTAS' });
-;
+const mariadb = require('mariadb');
+module.exports = () => {
+  return mariadb.createConnection({host: 'db', user: 'root', password: 'root', database: 'ESPECIALISTAS' });
 }
