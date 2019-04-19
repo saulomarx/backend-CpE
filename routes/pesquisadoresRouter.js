@@ -4,12 +4,20 @@ const controller = require('../controller/pesquisador');
 
 const router = Router();
 
-console.log()
 
 router.route('/')
-  .get((req, res) => controller.getProducts()
+  .get((req, res) => {
+    return controller.getPesquisadores(req.query)
     .then(products => res.status(200).send(products))
-    .catch(() => next())
+    .catch(() => next())}
   );
+
+  router.route('/:id')
+    .get((req, res) => {
+      return controller.get(req.params.id)
+      .then(products => res.status(200).send(products))
+      .catch(() => next())}
+    );
+
 
 module.exports = router;
