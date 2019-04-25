@@ -4,12 +4,10 @@ const checkRouter = require('./checkRouter');
 
 const router = Router();
 
-// TODO add a way to check the calling routes 
-// router.use((req)=>{
-//   console.log(req.url);
-//   console.log(req.method);
-//
-// })
+router.use((req,res,next)=>{
+  console.log(`${req.method} - ${req.url}`);
+  return next()
+})
 
 router.use('/pesquisadores', pesquisadoresRouter);
 router.use('/check', checkRouter);
