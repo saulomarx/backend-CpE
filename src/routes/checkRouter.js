@@ -1,9 +1,10 @@
-const { Router } = require('express');
+const express = require('express');
 
-const router = Router();
+const router = express.Router();
 
 
-router.route('/')
-  .get((req, res) => res.status(200).send("ITS ALIVEEEEEEE!"));
+router.get('/', async (req, res) => {
+  res.status(200).send('ITS ALIVEEEEEEE!');
+});
 
 module.exports = router;

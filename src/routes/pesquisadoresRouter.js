@@ -1,23 +1,28 @@
-const { Router } = require('express');
+const express = require('express');
 
 const controller = require('../controller/pesquisador');
 
-const router = Router();
+const router = express.Router();
 
 
-router.route('/')
-  .get((req, res) => {
-    return controller.getPesquisadores(req.query)
-    .then(products => res.status(200).send(products))
-    .catch(() => next())}
-  );
+router.get('/', async (req, res, next) => {
+  try {
+    const pesquisadores = await controller.getPesquisadores(req.query)
+    return res.status(200).send(pesquisadores);
+  } catch (error) {
+    return next(error)
+  }
+});
 
-  router.route('/:id')
-    .get((req, res) => {
-      return controller.get(req.params.id)
-      .then(products => res.status(200).send(products))
-      .catch(() => next())}
-    );
+router
+  .get('/:id' , async (req, res, next) => {
+    try {
+      const pesquisador = await controller.get(req.params.id)
+      return res.status(200).send(pesquisador);
+    } catch (error) {
+      return next(error);
+    }
+});
 
 
 module.exports = router;
