@@ -1,15 +1,12 @@
 {
-  "name": "backend",
+  "name": "backend-cpe",
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "npm install && nodemon ./bin/www",
-    "sequelize": "./node_modules/.bin/sequelize",
-    "serve": "pm2 start ./bin/www --no-daemon",
-    "db:migrate": "sequelize db:migrate",
-    "db:seed": "sequelize db:migrate && sequelize db:seed:all",
-    "db:seed:undo": "sequelize db:seed:undo",
-    "linter": "eslint ."
+    "start": "nodemon ./bin/www",
+    "migrate": "sequelize db:migrate",
+    "seed": "sequelize db:seed:all",
+    "linter": "eslint ./src"
   },
   "dependencies": {
     "body-parser": "^1.18.3",
@@ -20,8 +17,8 @@
     "morgan": "~1.9.0",
     "mysql2": "^1.5.3",
     "sequelize": "^4.37.7"
-},
-"devDependencies": {
+  },
+  "devDependencies": {
     "sequelize-cli": "^4.0.0",
     "nodemon": "^1.17.4",
     "chai": "^4.1.2",
