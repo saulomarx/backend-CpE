@@ -17,26 +17,40 @@
 // TrabEvento -> titulo
 
 
-
 const Database  = require('../config/database.js');
 
-function createWhere(query){
+function createWhere(query, fieldName){
   const vet = query.split(' ');
-  const maped = vet.map(nome => ` nome LIKE '%${nome}%' AND`).join(' ');
+  const maped = fieldName.map(field => {
+    const temp = vet.map(nome => ` ${field} LIKE '%${nome}%' OR`).join(' ')
+    return `(${temp.substring(0,temp.length-2)}) OR`
+    }
+  ).join(' ')
 
-  return `WHERE ${maped.substring(0,maped.length-3)};`
+  return `${maped.substring(0,maped.length-3)};`
 }
 
 module.exports = {
   async getPesquisadores(query) {
     const conection = await Database();
-    const where = query.nome ? await createWhere(query.nome): '';
-    return conection.query(`SELECT id, nome FROM Especialista ${where}`);
+    const where = query.nome ? await createWhere(query.nome, ["Especialista.nome"]): '';
+    return conection.query(`SELECT Especialista.id, Especialista.nome FROM Especialista WHERE ${where}`);
+  },
+
+  async getPesquisadoresAdvanced(query) {
+    const conection = await Database();
+    const where = query.nome ? await createWhere(query.nome, ['Especialista.nome','Artigo.titulo']): '';
+    const dbQuery = `
+        SELECT Especialista.id, Especialista.nome FROM Especialista
+        INNER JOIN Artigo ON Artigo.id_esp = Especialista.id
+        WHERE ${where}
+      `
+    return conection.query(dbQuery);
   },
 
   async get(id) {
     const conection = await Database();
     return conection.query(`SELECT * FROM Especialista WHERE id = ${id}`);
   }
-
+  
 };
