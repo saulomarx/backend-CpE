@@ -41,7 +41,7 @@ module.exports = {
     const conection = await Database();
     const where = query.nome ? await createWhere(query.nome, ['Especialista.nome','Artigo.titulo']): '';
     const dbQuery = `
-        SELECT Especialista.id, Especialista.nome FROM Especialista
+        SELECT DISTINCT Especialista.id, Especialista.nome FROM Especialista
         INNER JOIN Artigo ON Artigo.id_esp = Especialista.id
         WHERE ${where}
       `
@@ -52,5 +52,5 @@ module.exports = {
     const conection = await Database();
     return conection.query(`SELECT * FROM Especialista WHERE id = ${id}`);
   }
-  
+
 };
